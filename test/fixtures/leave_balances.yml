@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  casual_leave: 1
+  loss_of_pay: 1
+  used_cl: 1
+  remaining_cl: 1
+
+two:
+  casual_leave: 1
+  loss_of_pay: 1
+  used_cl: 1
+  remaining_cl: 1
