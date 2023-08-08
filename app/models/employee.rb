@@ -13,7 +13,7 @@ class Employee < ApplicationRecord
     validates :joining_date, :address, :designation, presence: true
 
     def salary
-        emp = Salary.find_by(employee_id: id)
-        return (emp.base_salary - emp.deducted_salary).to_f
+      emp = Salary.find_by(employee_id: id)
+      return (emp.base_salary - emp.deducted_salary).to_f
     end
 end

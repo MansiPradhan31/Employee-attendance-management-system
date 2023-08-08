@@ -3,12 +3,12 @@ class LeaveRequest < ApplicationRecord
   
     validates :start_date, :end_date, :reason, presence: true
     validates :leave_type, presence: true, inclusion: { in: ['casual leave', 'loss of pay'], message: "is invalid" }
-    validate :check_casual_leave_balance, if: :casual_leave?
+    validate :check_casual_leave_balance, if: :casual_leave?, on: :create
     after_create :update_leave_balance
     after_create :update_salary
    
     def casual_leave?
-        leave_type == 'casual leave'
+      leave_type == 'casual leave'
     end
 
     def check_casual_leave_balance
@@ -32,11 +32,11 @@ class LeaveRequest < ApplicationRecord
     end
     
     def update_salary
-        emp_sal = Salary.find_by(employee_id: employee_id)
-        per_day_amount = emp_sal.base_salary/30
-        if leave_type == 'loss of pay'
-            emp_sal.update(deducted_salary: @total_leave_days * per_day_amount)
-        end
+      emp_sal = Salary.find_by(employee_id: employee_id)
+      per_day_amount = emp_sal.base_salary/30
+      if leave_type == 'loss of pay'
+          emp_sal.update(deducted_salary: @total_leave_days * per_day_amount)
+      end
     end
     
   end
