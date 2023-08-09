@@ -1,5 +1,5 @@
 class Profile < ApplicationRecord
-    belongs_to :employee
+  belongs_to :employee
 
-    validates :image_url, presence: true
+  validates :image_url, presence: true
 end

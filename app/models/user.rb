@@ -14,12 +14,11 @@ class User < ApplicationRecord
     return LeaveRequest.all if role == 'HR'
     errors.add('Only Hr can see the LeaveRequest details')
   end 
-  
+
   def update_leave_request(leave_request, new_status)
     return unless role == 'HR'
     leave_request.update(status: new_status)
   end
-
 
   def employee_activities
     return Activity.all if role == 'HR'
