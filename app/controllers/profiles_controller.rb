@@ -24,7 +24,7 @@ class ProfilesController < ApplicationController
 
   def destroy
     @profile.destroy
-    head :no_content
+    render json: @emp, status: :ok
   end
 
   private

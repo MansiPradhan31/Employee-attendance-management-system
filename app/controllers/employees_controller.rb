@@ -1,8 +1,8 @@
 class EmployeesController < ApplicationController
-  before_action :set_emp, only: [:show, :update, :destroy]
+  before_action :set_emp, only: [:show, :update, :destroy, :leave_requests, :create_leave_request]
 
   def index
-    @emp = Employee.find_by(user_id: params[:user_id])
+    @emp = Employee.all
     render json: @emp
   end
 
@@ -28,24 +28,19 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    if @emp.destroy
-      render json: @emp, status: :ok
-    else
-      render json: @emp.errors, status: :not_found
-    end
+    @emp.destroy
+    render json: @emp, status: :ok
   end
 
   def leave_requests
-    # leave_requests = @emp.leave_requests
-    # render json: leave_requests
-    employee = Employee.find(params[:id])
-    leave_requests = employee.leave_requests
+    leave_requests = @emp.leave_requests
     render json: leave_requests, status: :ok
   end
 
+
+
   def create_leave_request
-    employee = Employee.find(params[:id])
-    leave_request = employee.leave_requests.new(leave_request_params)
+    leave_request = @emp.leave_requests.new(leave_request_params)
     
     if leave_request.save
       render json: leave_request, status: :created
@@ -57,7 +52,7 @@ class EmployeesController < ApplicationController
   private
 
   def set_emp
-    @emp = Employee.find_by(id: params[:id])
+    @emp = Employee.find(params[:id])
     render json: @emp.errors, status: 404 if @emp.nil? 
   end
     

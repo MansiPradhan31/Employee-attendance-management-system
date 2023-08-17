@@ -1,5 +1,5 @@
 class LeaveBalancesController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_leave_balance, only: [:show, :update, :destroy]
 
   def index
     @balance = LeaveBalance.find_by(employee_id: params[:employee_id])
@@ -29,12 +29,12 @@ class LeaveBalancesController < ApplicationController
 
   def destroy
     @balance.destroy
-    head :no_content
+    render json: @emp, status: :ok
   end
 
   private
 
-  def set_user
+  def set_leave_balance
     @balance = LeaveBalance.find_by(id: params[:id])
     render json: @balance.errors, status: 404 if @balance.nil? 
   end
