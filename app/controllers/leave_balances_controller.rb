@@ -29,7 +29,7 @@ class LeaveBalancesController < ApplicationController
 
   def destroy
     @balance.destroy
-    render json: @emp, status: :ok
+    render json: @balance, status: :ok
   end
 
   private

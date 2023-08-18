@@ -29,7 +29,7 @@ class ActivitiesController < ApplicationController
 
   def destroy
     @activity.destroy
-    render json: @emp, status: :ok
+    render json: @activity, status: :ok
   end
 
   private

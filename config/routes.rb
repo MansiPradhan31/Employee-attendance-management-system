@@ -7,8 +7,6 @@ Rails.application.routes.draw do
     end
   end
   
-
-  
   resources :employees do
     member do
       get 'leave_requests'

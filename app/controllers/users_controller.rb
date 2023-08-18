@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
   def approve_leave_request
     if @user.role == 'HR'
-      leave_request = LeaveRequest.find(params[:id])
+      leave_request = LeaveRequest.find(params[:request_id])
       new_status = params[:status]
       if new_status == 'Approved' || new_status == 'Cancelled'
         leave_request.update(status: new_status)
@@ -54,6 +54,11 @@ class UsersController < ApplicationController
     else
       render json: {errors: 'Only HR can approve leave requests'},status: :forbidden
     end
+  end
+
+  def salary
+    salary = Salary.find(params[:id])
+    render json: salary, status: :ok
   end
 
   private
