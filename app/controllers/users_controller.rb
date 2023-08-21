@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   
   def index
     @user = User.all
-    render json: @user
+    render json: @user, include: ['employees', 'employees.leave_requests']
   end
 
   def show
-    render json: @user
+    render json: @user, include: ['employees', 'employees.leave_requests']
   end
 
   def create
@@ -54,11 +54,6 @@ class UsersController < ApplicationController
     else
       render json: {errors: 'Only HR can approve leave requests'},status: :forbidden
     end
-  end
-
-  def salary
-    salary = Salary.find(params[:id])
-    render json: salary, status: :ok
   end
 
   private

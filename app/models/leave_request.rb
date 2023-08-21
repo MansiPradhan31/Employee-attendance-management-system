@@ -16,7 +16,7 @@ class LeaveRequest < ApplicationRecord
     total_casual_leave_days = (end_date - start_date).to_i + 1
 
     if leave_balance.casual_leave.to_f < total_casual_leave_days
-      errors.add("Insufficient casual leave balance")
+      errors.add(:base, "Insufficient casual leave balance")
     end
   end
 

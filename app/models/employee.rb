@@ -4,6 +4,7 @@ class Employee < ApplicationRecord
   has_many :leave_balances
   has_one :profile
   has_one :salary
+  belongs_to :user
 
   validates :first_name, :last_name, presence: true, format: {with: /\A[a-zA-Z]+\z/, message: "only allows letters"}
   validates :email, presence: true, uniqueness: true, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, message: "is not a valid email"}

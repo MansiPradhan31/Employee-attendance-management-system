@@ -12,8 +12,9 @@ Rails.application.routes.draw do
       get 'leave_requests'
       post 'create_leave_request'
     end
-    get '/salaries', to: 'salaries#show'
-    post '/salaries', to: 'salaries#create'
+    # get '/salaries', to: 'salaries#show'
+    # post '/salaries', to: 'salaries#create'
+    resources :salaries, only: [:show, :create]
     resource :profile, shallow: true
     resources :activities, :leave_balances, shallow: true
   end
