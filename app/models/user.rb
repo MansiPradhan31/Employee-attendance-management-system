@@ -1,7 +1,9 @@
 class User < ApplicationRecord
+  require "securerandom"
   has_many :employees
   has_one_attached :picture
-  validates :first_name, :last_name, presence: true
+  has_secure_password 
+  validates :first_name, :last_name, :password, presence: true
   validates :email, presence: true, uniqueness: true, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, message: "is not a valid email"}
   validates :role, presence: true, inclusion: {in: ['Employee', 'HR'], message: "is invalid"}
 

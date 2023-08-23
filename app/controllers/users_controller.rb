@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :view_leave_requests, :approve_leave_request]
-  
+  skip_before_action :authenticate_request, only: [:create]
+
   def index
     @user = User.all
     render json: @user, include: ['employees', 'employees.leave_requests']
@@ -64,6 +65,6 @@ class UsersController < ApplicationController
   end
     
   def user_params
-    params.permit(:role, :first_name, :last_name, :email, :picture)
+    params.permit(:role, :first_name, :last_name, :email, :picture, :password)
   end
 end

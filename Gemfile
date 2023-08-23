@@ -3,7 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.0"
 
-gem 'active_model_serializers'
+gem "active_model_serializers"
+gem "jwt"
+gem "bcrypt", "~> 3.1.7"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.6"
