@@ -1,4 +1,6 @@
 class Employee < ApplicationRecord
+  has_many_attached :works
+
   has_many :activities
   has_many :leave_requests
   has_many :leave_balances

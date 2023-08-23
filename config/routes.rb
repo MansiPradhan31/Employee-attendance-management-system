@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     # get '/salaries', to: 'salaries#show'
     # post '/salaries', to: 'salaries#create'
     resources :salaries, only: [:show, :create]
-    resource :profile, shallow: true
+    resource :profile
     resources :activities, :leave_balances, shallow: true
   end
 

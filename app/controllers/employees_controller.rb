@@ -57,7 +57,7 @@ class EmployeesController < ApplicationController
   end
     
   def emp_params
-    params.permit(:first_name, :last_name, :email, :gender, :address, :mob_no, :designation, :user_id)
+    params.permit(:first_name, :last_name, :email, :gender, :address, :mob_no, :designation, :user_id, :works)
   end
 
   def leave_request_params
